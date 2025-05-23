@@ -1,12 +1,8 @@
-const readline = require('readline');
+let repetir;
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-// Função para classificar o herói
-function classificarHeroi(nome, xp) {
+do {
+  let nome = prompt("Digite o nome do herói:");
+  let xp = parseInt(prompt("Digite a quantidade de XP do herói:"));
   let nivel = "";
 
   if (xp < 1000) {
@@ -27,24 +23,7 @@ function classificarHeroi(nome, xp) {
     nivel = "Radiante";
   }
 
-  console.log(`O Herói de nome ${nome} está no nível de ${nivel}\n`);
-}
+  alert(`O Herói de nome ${nome} está no nível de ${nivel}`);
+  repetir = prompt("Deseja classificar outro herói? (sim/não)");
 
-// Função para repetir enquanto quiser
-function iniciar() {
-  rl.question("Digite o nome do herói (ou 'sair' para encerrar): ", function(nome) {
-    if (nome.toLowerCase() === "sair") {
-      console.log("Programa encerrado.");
-      rl.close();
-      return;
-    }
-
-    rl.question("Digite a quantidade de XP do herói: ", function(xp) {
-      xp = Number(xp); // converte para número
-      classificarHeroi(nome, xp);
-      iniciar(); // repete o processo
-    });
-  });
-}
-
-iniciar();
+} while (repetir.toLowerCase() === "sim");
